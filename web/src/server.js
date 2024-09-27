@@ -22,6 +22,30 @@ app.set('views', __dirname);
 // postgres 초기화
 const dbhost = process.env.DB_HOST || 'localhost';
 console.log(`DB_HOST: ${dbhost}`);
+// express, mustache 라이브러리 초기화
+const express = require('express');
+const mustacheExpress = require('mustache-express');
+const promBundle = require('express-prom-bundle');
+const metricsMiddleware = promBundle({includeMethod: true, includePath: true});
+
+// postgres 라이브러리 초기화
+const { Pool } = require('pg');
+const os = require('os');
+
+// express 라는 mvc 라이브러리 설정
+const app = express();
+app.use(metricsMiddleware);
+app.use(express.static('public'));  // css,js 경로 지정
+app.set('view engine', 'html');     // 뷰 엔진 설정
+app.engine('html', mustacheExpress());  // html 파일 처리기 등록
+app.set('views', __dirname);
+
+
+
+
+// postgres 초기화
+const dbhost = process.env.DB_HOST || 'localhost';
+console.log(`DB_HOST: ${dbhost}`);
 const pool = new Pool({
     host: dbhost,
     user: 'dockeruser',
@@ -62,7 +86,3 @@ const port = 3000;
 app.listen(port, '0.0.0.0', () => {
     console.log(`Application listening on port ${port}`);
 });
-
-
-
-
