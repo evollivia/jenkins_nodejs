@@ -5,7 +5,6 @@ pipeline {
         IMAGE_NAME="docdker/jenkins_nodejs3"
         IMAGE_TAG="latest"
     }
-
     stages {
         stage('clone from SCM') {
             steps {
