@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKERHUB_SECRETS=credentials('dockerhub')
-        IMAGE_NAME="docdker/jenkins_nodejs3"
+        IMAGE_NAME="docdker/jenkins_nodejs4"
         IMAGE_TAG="latest"
     }
     stages {
