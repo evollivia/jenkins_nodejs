@@ -9,8 +9,8 @@ pipeline{
         stage('docker build and push') {
             steps {
                 sh'''
-                docker build -t 54.180.229.129:8081/echo-ip .
-                docker push 54.180.229.129:8081/echo-ip
+                docker build -t 54.180.229.129:8081/jenkins_nodejs .
+                docker push 54.180.229.129:8081/jenkins_nodejs
                 '''
             }
         }
